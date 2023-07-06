@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { priorities, statuses } from "./data";
-import { stock } from "@/app/page";
+import { stock } from "@/actions/getStocks";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 import Image from "next/image";
