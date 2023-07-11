@@ -1,20 +1,18 @@
-"use client"
+"use client";
 
-import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
-import { MixerHorizontalIcon } from "@radix-ui/react-icons"
-import { Table } from "@tanstack/react-table"
-
-import { Button } from "@/components/ui/button"
+import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { Table } from "@tanstack/react-table";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import Image from "next/image";
 
 interface DataTableViewOptionsProps<TData> {
-  table: Table<TData>
+  table: Table<TData>;
 }
 
 export function DataTableViewOptions<TData>({
@@ -23,14 +21,16 @@ export function DataTableViewOptions<TData>({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="ml-auto hidden h-8 lg:flex"
-        >
-          <MixerHorizontalIcon className="mr-2 h-4 w-4" />
-          View
-        </Button>
+        <button className="Button p-[13px]  bg-slate-100 rounded-lg justify-center items-center gap-1.5 inline-flex">
+          <div className="Filter w-5 h-5 pl-[2.50px] pr-[1.67px] pt-[2.50px] pb-[1.67px] justify-center items-center flex">
+            <Image
+              src={`/filter-icon.jpg`}
+              width={20}
+              height={20}
+              alt="filter-icon"
+            />
+          </div>
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
         <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
@@ -47,13 +47,12 @@ export function DataTableViewOptions<TData>({
                 key={column.id}
                 className="capitalize"
                 checked={column.getIsVisible()}
-                onCheckedChange={(value) => column.toggleVisibility(!!value)}
-              >
+                onCheckedChange={(value) => column.toggleVisibility(!!value)}>
                 {column.id}
               </DropdownMenuCheckboxItem>
-            )
+            );
           })}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

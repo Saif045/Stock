@@ -1,22 +1,19 @@
-import { stocks } from "@/actions/getStocks";
+import { getAllStocks } from "@/actions/getStocks";
+import ClientOnly from "@/components/ClientOnly";
 import { columns } from "@/components/table/columns";
 import { DataTable } from "@/components/table/data-table";
-import { UserNav } from "@/components/table/user-nav";
 
 export default async function Home() {
-  // await stock data
+  const stocks = getAllStocks();
 
   return (
-    <div className="hidden h-full flex-1 flex-col space-y-8 p-4 md:flex">
-      <div className="flex items-center justify-between space-y-2">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
-          <p className="text-muted-foreground">
-            Here&apos;s a list of your Stock!
-          </p>
-        </div>
+    <div className="relative bg-white w-full flex flex-col justify-center items-center ">
+      <div className="mt-[96px] mb-16 w-full max-w-[1500px] px-[10px] xl:px-[80px]  flex flex-col  text-zinc-800 text-[32px] font-semibold leading-10">
+        Markets
+        <ClientOnly>
+          <DataTable data={stocks} columns={columns} />
+        </ClientOnly>
       </div>
-      <DataTable data={stocks} columns={columns} />
     </div>
   );
 }
